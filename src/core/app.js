@@ -4,7 +4,7 @@ const registerController = require("../controllers/auth/regController.js")
 
 const app = express()
 
-const db = require("./db.js")
+const db = require("../utils/db.js")
 
 db.serialize(() => {
     db.run(

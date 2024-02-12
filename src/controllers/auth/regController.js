@@ -1,5 +1,5 @@
 const { dirname } = require("path")
-const db = require("../../core/db")
+const db = require("../../utils/db")
 const pathToView = require("../../views/views_path")
 
 exports.register_form = function(request, response) {
