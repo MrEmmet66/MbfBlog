@@ -3,6 +3,12 @@ const db = require("../core/db")
 const pathToView = require("../views/views_path")
 
 exports.register_form = function(request, response) {
+
+  if(request.cookies['MbfBlogUser']) {
+    console.log("Log with cookie")
+  }
+
+  console.log(request.session)
   if(request.session && request.session.user) {
       console.log("User is logged in");
   } else {
@@ -37,6 +43,9 @@ exports.register_get_form = function(request, response) {
 
                   if (session.user) {
                       console.log("Session successfully set for user:", session.user.username);
+
+                      response.cookie("MbfBlogUser", request.session.user)
+
                   } else {
                       console.log("Error setting session for user");
                   }

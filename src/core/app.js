@@ -3,6 +3,8 @@ const express = require("express")
 const registerController = require("../controllers/regController.js")
 const profileViewController = require("../controllers/profileController.js")
 
+const cookieParser = require("cookie-parser")
+
 const app = express()
 
 const session = require("../core/node_modules/express-session");
@@ -10,10 +12,13 @@ const session = require("../core/node_modules/express-session");
 app.use(session({
     secret: 'oleg_bebra',
     resave: false,
-    saveUninitialized: false
-}));
+    saveUninitialized: true,
+    cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 } // set secure to true if using HTTPS
+  }));
 
-const db = require("./db.js")
+const db = require("./db.js");
+
+app.use(cookieParser("ilovemorgenshtern"))
 
 db.serialize(() => {
     db.run(
