@@ -1,6 +1,6 @@
 
 const passport = require('../../core/node_modules/passport')
-const db = require('../../utils/db')
+const db = require('../../core/db')
 const express = require('../../core/node_modules/express')
 const app = express()
 const session = require('../../core/node_modules/express-session')
@@ -43,8 +43,9 @@ exports.loginForm = function (request, response) {
     if(request.cookies['MbfBlogUser']) {
         response.send("Logged")
     }
-
-    response.sendFile(global.date + '\\auth\\loginView.html')
+    else {
+        response.sendFile(global.date + '\\auth\\loginView.html')
+    }
 }
 
 exports.logout = function (request, response) {
