@@ -1,6 +1,6 @@
 const express = require("express")
 
-const registerController = require("../controllers/regController.js")
+const registerController = require("../controllers/auth/regController.js")
 
 const app = express()
 
