@@ -3,31 +3,58 @@ const db = require("../core/db")
 const pathToView = require("../views/views_path")
 
 exports.register_form = function(request, response) {
-    const viewPath = global.date
-    response.sendFile(viewPath + "/regPage.html")
+  if(request.session && request.session.user) {
+      console.log("User is logged in");
+  } else {
+      console.log("User is not logged in");
+  }
+
+  const viewPath = global.date;
+  response.sendFile(viewPath + "/regPage.html");
 }
 
 exports.register_get_form = function(request, response) {
-    const username = request.body.username
-    const email = request.body.email
-    const password = request.body.password
+  const session = request.session;
+  const username = request.body.username;
+  const email = request.body.email;
+  const password = request.body.password;
 
-    console.log(`Username: ${username}`)
-    console.log(`Email: ${email}`)
-    console.log(`Password: ${password}`)
+  if (!session.user) {
+      db.run(
+          "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
+          [username, email, password],
+          function (err) {
+              if (err) {
+                  console.error(err);
+                  response.status(500).send("Error registering user");
+              } else {
+                  session.user = {
+                      username: username,
+                      email: email
+                  };
 
-    db.run(
-        "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
-        [username, email, password],
-        function (err) {
-          if (err) {
-            console.error(err);
-            response.status(500).send("Error registering user");
-          } else {
-            console.log("User registered successfully");
-            const viewPath = global.date
-            response.sendFile(viewPath + "/success_register.html")
+                  console.log("User registered successfully");
+
+                  if (session.user) {
+                      console.log("Session successfully set for user:", session.user.username);
+                  } else {
+                      console.log("Error setting session for user");
+                  }
+
+                  const viewPath = global.date;
+                  response.sendFile(viewPath + "/success_register.html");
+              }
           }
-        }
-      )
+      );
+  } else {
+      console.log("User is already registered with session");
+      const viewPath = global.date;
+      response.sendFile(viewPath + "/already_registered.html");
+  }
+};
+
+exports.feed = function(request, response) {
+    requireAuth(request, response, function() {
+        response.send("bebra")
+    })
 }

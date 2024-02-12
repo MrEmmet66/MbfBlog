@@ -5,6 +5,14 @@ const profileViewController = require("../controllers/profileController.js")
 
 const app = express()
 
+const session = require("../core/node_modules/express-session");
+
+app.use(session({
+    secret: 'oleg_bebra',
+    resave: false,
+    saveUninitialized: false
+}));
+
 const db = require("./db.js")
 
 db.serialize(() => {
