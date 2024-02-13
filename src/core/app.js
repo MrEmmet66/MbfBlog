@@ -85,6 +85,11 @@ app.post("/submit-comment", function(request, response) {
 
 })
 
+app.get("/goto_profile", function(request, response) {
+  console.log(request.cookies["MbfBlogUser"].name)
+  response.redirect("/users/" + request.cookies["MbfBlogUser"].name)
+})
+
 
 app.use("/account", registerRouter)
 app.use("/account", loginRouter)

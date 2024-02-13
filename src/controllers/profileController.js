@@ -11,16 +11,22 @@ exports.check_profile = function(request, response) {
         }
         else if(row) {
             const { username, email } = row
-            console.log("User registered successfully");
             const viewPath = global.date
 
-            console.log(viewPath)
-
-            response.render(viewPath + "/profile.hbs", {
-                username: username,
-                avatar: 'https://pm1.aminoapps.com/7920/968a9a83cc9d01cdeaddea5df538ae639b9f9344r1-554-554v2_uhq.jpg',
-                posts: 0,
-                followers: 0
+            db.all("SELECT name, date, content FROM posts WHERE name = ?", [username], (err, postsRows) => {
+                if(err) {
+                    console.log(err)
+                }
+                else {
+                    const viewPath = global.date
+                    
+                    response.render(viewPath + "/profile.hbs", {
+                        username: username,
+                        avatar: 'https://pm1.aminoapps.com/7920/968a9a83cc9d01cdeaddea5df538ae639b9f9344r1-554-554v2_uhq.jpg',
+                        posts: postsRows,
+                        followers: 0 // Placeholder for number of followers
+                    })
+                }
             })
         }
     })

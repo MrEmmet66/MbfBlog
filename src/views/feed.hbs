@@ -164,6 +164,24 @@
             z-index: 9999;
             cursor: pointer;
         }
+        /* Общие стили */
+        ::-webkit-scrollbar {
+            width: 10px; /* Ширина вертикального скроллбара */
+        }
+
+        ::-webkit-scrollbar-track {
+            background-color: #333333; /* Цвет фона скроллбара */
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #8A2BE2; /* Цвет ползунка скроллбара */
+            border-radius: 5px; /* Скругление углов ползунка */
+        }
+
+        /* Операция скроллбара при наведении курсора */
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #BB86FC; /* Измененный цвет ползунка при наведении */
+        }
 
     </style>
 </head>
@@ -173,7 +191,7 @@
         <div class="profile-icon">
             <img src="https://s.isanook.com/ga/0/ud/218/1093497/genshin-impact-(1).jpg?ip/crop/w670h402/q80/jpg" alt="Аватар">
         </div>
-        <a href="link_to_profile.html" class="small-button">Перейти в профиль</a>
+        <a href="/goto_profile" class="small-button">Перейти в профиль</a>
         <div>
             <h3>Случайные виджеты:</h3>
             <p>Случайный виджет 1</p>
