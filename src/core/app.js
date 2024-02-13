@@ -60,6 +60,25 @@ app.get("/feed", function(request, response) {
   }
 })
 
+app.post("/submit-comment", function(request, response) {
+  const comment = request.body.comment
+  const userId = request.cookies["MbfBlogUser"].id
+
+  const date = new Date().toISOString()
+  const content = comment
+
+  const sql = "INSERT INTO posts (id, date, content) VALUES (?, ?, ?)"
+  db.run(sql, [userId, date, content], function(err) {
+    if(err) {
+      console.log("Ошибка при вставке нового поста в БД:", err)
+    }
+    else {
+      console.log("Добавлен новый пост для юзера:", request.cookies["MbfBlogUser"].name)
+    }
+  })
+
+})
+
 
 app.use("/account", registerRouter)
 app.use("/account", loginRouter)
