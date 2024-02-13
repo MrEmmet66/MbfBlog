@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости - Личный Блог</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #EEEEEE; /* светло-серый цвет фона */
+            color: #8A2BE2; /* фиолетовый цвет текста */
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        #left-panel {
+            flex: 1;
+            background-image: url('beautiful_background.jpg'); /* добавление красивого фона */
+            background-size: cover;
+            background-position: center;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #news-area {
+            flex: 3;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        p {
+            font-size: 16px;
+        }
+        .profile-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #8A2BE2; /* фиолетовый цвет кнопки */
+            color: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            overflow: hidden; /* обрезаем изображение по краям круга */
+        }
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* подгоняем изображение под форму круга */
+        }
+        .small-button {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #8A2BE2; /* фиолетовый цвет кнопки */
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        #input-area {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 50px; /* Поднимает блок над нижним краем страницы на 50px */
+            width: 500px; /* Ширина блока 90% */
+            max-width: 900px; /* Максимальная ширина блока */
+            padding: 45px;
+            text-align: center;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #8A2BE2;
+            border-radius: 5px;
+            width: 300px;
+            outline: none;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #8A2BE2; /* фиолетовый цвет кнопки */
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .separator {
+            position: absolute;
+            width: 1px;
+            height: 100%;
+            background-color: #8A2BE2; /* фиолетовый цвет полоски */
+        }
+
+        #separator1 {
+            left: 25.33%;
+        }
+
+        #separator2 {
+            left: 75.66%;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="left-panel">
+        <h2>Добро пожаловать!</h2>
+        <div class="profile-icon">
+            <img src="https://s.isanook.com/ga/0/ud/218/1093497/genshin-impact-(1).jpg?ip/crop/w670h402/q80/jpg" alt="Аватар">
+        </div>
+        <a href="link_to_profile.html" class="small-button">Перейти в профиль</a>
+        <div>
+            <h3>Случайные виджеты:</h3>
+            <p>Случайный виджет 1</p>
+            <p>Случайный виджет 2</p>
+            <p>Случайный виджет 3</p>
+            <!-- Добавьте больше виджетов по желанию -->
+        </div>
+    </div>
+    <div id="news-area">
+        <h1>Новости Личного Блога</h1>
+        <p>Здесь отображаются последние новости и статьи блога.</p>
+        
+        <div id="input-area">
+            <form action="#" method="post">
+                <input type="text" placeholder="Напишите комментарий здесь">
+                <input type="submit" value="Отправить">
+            </form>
+        </div>
+    </div>
+
+    <div id="separator1" class="separator"></div>
+    <div id="separator2" class="separator"></div>
+</body>
+</html>

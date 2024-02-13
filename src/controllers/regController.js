@@ -43,6 +43,8 @@ exports.register_get_form = function(request, response) {
 
                   console.log("User registered successfully");
 
+                  const postTableName = "Posts_" + username
+
                   if (session.user) {
                       console.log("Session successfully set for user:", session.user.username);
                       response.cookie("MbfBlogUser", request.session.user)
@@ -54,7 +56,7 @@ exports.register_get_form = function(request, response) {
                   response.sendFile(viewPath + "/success_register.html");
               }
           }
-      );
+      )
   } else {
       console.log("User is already registered with session");
       const viewPath = global.date;

@@ -14,7 +14,12 @@ db.serialize(() => {
     db.run(
       "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, email TEXT UNIQUE, password TEXT)"
     )
+
+    db.run(
+      "CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, content TEXT)"
+    )
 })
+
 
 app.use(cookieParser("ilovemorgenshtern"))
 
@@ -31,7 +36,6 @@ app.use(express.urlencoded({extended: false}))
 const registerRouter = express.Router()
 const loginRouter = express.Router()
 const profileViewRouter = express.Router()
-
 registerRouter.use("/create_account", registerController.register_form)
 registerRouter.use("/successfully_register", registerController.register_get_form)
 
@@ -41,10 +45,25 @@ loginRouter.get('/logout', loginController.logout)
 
 profileViewRouter.use("/:username", profileViewController.check_profile)
 
+app.get("/", function(request, response) {
+  response.sendFile(global.date + "/rootPage.html")
+})
+
+app.get("/feed", function(request, response) {
+  console.log(request.session.user)
+  console.log(request.cookies)
+  if(request.session.user || request.cookies["MbfBlogUser"]) {
+    response.sendFile(global.date + "/feed.html")
+  }
+  else {
+    response.sendFile(global.date + "/auth/loginView.html")
+  }
+})
+
+
 app.use("/account", registerRouter)
 app.use("/account", loginRouter)
 app.use("/users", profileViewRouter)
-
 
 app.listen(3000, () => {
     console.log("Server stated | http://localhost:3000")

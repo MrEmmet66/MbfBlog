@@ -51,5 +51,5 @@ exports.loginForm = function (request, response) {
 
 exports.logout = function (request, response) {
     response.clearCookie('MbfBlogUser')
-    response.send('Logged out')
+    response.redirect("/")
 }
