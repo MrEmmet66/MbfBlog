@@ -14,6 +14,46 @@
             padding: 0;
             display: flex;
         }
+        #container {
+            width: 800px; /* Ширина контейнера */
+            padding: 20px;
+            background-color: #FFFFFF; /* Белый цвет фона контейнера */
+            border: 2px solid #8A2BE2; /* Фиолетовая рамка контейнера */
+            border-radius: 10px; /* Скругление углов контейнера */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Тень контейнера */
+        }
+        .post {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #8A2BE2;
+            border-radius: 5px;
+            background-color: #F5F5F5;
+            max-width: 400px; /* Задаем максимальную ширину для контейнера поста */
+            margin: 0 auto 10px; /* Центрируем контейнер поста и добавляем отступ снизу */
+            margin-left: 3px;
+        }
+
+        .post-content {
+            max-height: 100px; /* Максимальная высота содержимого поста */
+            overflow: hidden;
+        }
+
+        .post-content.expanded {
+            max-height: none; /* Показать весь текст поста при раскрытии */
+        }
+
+        .post-content {
+            margin-bottom: 10px; /* Отступ между контентом поста и датой */
+        }
+        .post-date {
+            font-size: 12px;
+            color: #888888; /* Серый цвет текста даты */
+        }
+        .post-user {
+            font-size: 12px;
+            font-weight: bold;
+            color: #555555; /* Темно-серый цвет текста пользователя */
+        }
         #left-panel {
             flex: 1;
             background-image: url('beautiful_background.jpg'); /* добавление красивого фона */
@@ -91,6 +131,13 @@
             margin-left: 15px;
         }
 
+        #posts-container {
+            max-height: 60vh;
+            overflow-y: auto;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
         .separator {
             position: absolute;
             width: 1px;
@@ -126,7 +173,23 @@
     <div id="news-area">
         <h1>Новости Личного Блога</h1>
         <p>Здесь отображаются последние новости и статьи блога.</p>
-        
+
+        <div id="posts-container">
+            {{#each posts}}
+            <div class="post">
+                <div class="post-content">
+                    <p>{{content}}</p>
+                </div>
+                <div class="post-date">
+                    <p>{{date}}</p>
+                </div>
+                <div class="post-user">
+                    <p>{{username}}</p>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
         <div id="input-area">
             <form action="/submit-comment" method="post">
                 <input type="text" name="comment" placeholder="Напишите комментарий здесь">

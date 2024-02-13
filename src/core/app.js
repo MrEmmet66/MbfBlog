@@ -16,7 +16,7 @@ db.serialize(() => {
     )
 
     db.run(
-      "CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, content TEXT)"
+      "CREATE TABLE IF NOT EXISTS posts (name TEXT, date TEXT, content TEXT)"
     )
 })
 
@@ -49,31 +49,38 @@ app.get("/", function(request, response) {
   response.sendFile(global.date + "/rootPage.html")
 })
 
-app.get("/feed", function(request, response) {
-  console.log(request.session.user)
-  console.log(request.cookies)
-  if(request.session.user || request.cookies["MbfBlogUser"]) {
-    response.sendFile(global.date + "/feed.html")
+app.get("/feed", function (request, response) {
+  console.log(request.session.user);
+  console.log(request.cookies);
+  if (request.session.user || request.cookies["MbfBlogUser"]) {
+    db.all("SELECT * FROM posts", function (err, rows) {
+      if (err) {
+        console.error(err);
+        response.status(500).send("Internal Server Error");
+      } else {
+        response.render(global.date + "/feed.hbs", { posts: rows });
+      }
+    });
+  } else {
+    response.sendFile(global.date + "/auth/loginView.html");
   }
-  else {
-    response.sendFile(global.date + "/auth/loginView.html")
-  }
-})
+});
 
 app.post("/submit-comment", function(request, response) {
   const comment = request.body.comment
-  const userId = request.cookies["MbfBlogUser"].id
+  const userName = request.cookies["MbfBlogUser"].name
 
   const date = new Date().toISOString()
   const content = comment
 
-  const sql = "INSERT INTO posts (id, date, content) VALUES (?, ?, ?)"
-  db.run(sql, [userId, date, content], function(err) {
+  const sql = "INSERT INTO posts (name, date, content) VALUES (?, ?, ?)"
+  db.run(sql, [userName, date, content], function(err) {
     if(err) {
       console.log("Ошибка при вставке нового поста в БД:", err)
     }
     else {
       console.log("Добавлен новый пост для юзера:", request.cookies["MbfBlogUser"].name)
+      response.redirect("/feed")
     }
   })
 

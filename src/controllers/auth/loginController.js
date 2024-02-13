@@ -33,7 +33,7 @@ exports.loginPost = function (request, response) {
                     email: row.email
                 }
                 response.cookie('MbfBlogUser', cookie)
-                response.send('Logged')
+                response.redirect("/feed")
 
             }
         }
@@ -42,7 +42,7 @@ exports.loginPost = function (request, response) {
 
 exports.loginForm = function (request, response) {
     if(request.cookies['MbfBlogUser']) {
-        response.send("Logged")
+        response.redirect("/feed")
     }
     else {
         response.sendFile(global.date + '\\auth\\loginView.html')
