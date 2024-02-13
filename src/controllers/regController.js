@@ -25,7 +25,7 @@ exports.register_get_form = function(request, response) {
   const email = request.body.email;
   const password = request.body.password;
 
-  if (!session.user) {
+  if (!request.session.user) {
       db.run(
           "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
           [username, email, password],

@@ -20,6 +20,8 @@ db.serialize(() => {
     )
 })
 
+
+
 app.set("view engine", "hbs")
 app.use(express.urlencoded({extended: false}))
 
