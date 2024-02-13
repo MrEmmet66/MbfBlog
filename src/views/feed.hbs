@@ -8,57 +8,55 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #EEEEEE; /* светло-серый цвет фона */
-            color: #8A2BE2; /* фиолетовый цвет текста */
+            background-color: #1a1a1a; /* dark grey background color */
+            color: #FFFFFF; /* white text color */
             margin: 0;
             padding: 0;
             display: flex;
         }
         #container {
-            width: 800px; /* Ширина контейнера */
+            width: 800px; /* Container width */
             padding: 20px;
-            background-color: #FFFFFF; /* Белый цвет фона контейнера */
-            border: 2px solid #8A2BE2; /* Фиолетовая рамка контейнера */
-            border-radius: 10px; /* Скругление углов контейнера */
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Тень контейнера */
+            background-color: #333333; /* Dark gray container background color */
+            border: 2px solid #8A2BE2; /* Purple container border */
+            border-radius: 10px; /* Rounded container corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Container shadow */
         }
         .post {
             margin-bottom: 20px;
             padding: 10px;
             border: 1px solid #8A2BE2;
             border-radius: 5px;
-            background-color: #F5F5F5;
-            max-width: 400px; /* Задаем максимальную ширину для контейнера поста */
-            margin: 0 auto 10px; /* Центрируем контейнер поста и добавляем отступ снизу */
+            background-color: #292929; /* Dark grey post background */
+            max-width: 400px;
+            margin: 0 auto 10px;
             margin-left: 3px;
         }
 
         .post-content {
-            max-height: 100px; /* Максимальная высота содержимого поста */
+            max-height: 100px;
             overflow: hidden;
         }
 
         .post-content.expanded {
-            max-height: none; /* Показать весь текст поста при раскрытии */
+            max-height: none;
         }
 
         .post-content {
-            margin-bottom: 10px; /* Отступ между контентом поста и датой */
+            margin-bottom: 10px;
         }
         .post-date {
             font-size: 12px;
-            color: #888888; /* Серый цвет текста даты */
+            color: #AAAAAA; /* Light gray date text color */
         }
         .post-user {
             font-size: 12px;
             font-weight: bold;
-            color: #555555; /* Темно-серый цвет текста пользователя */
+            color: #CCCCCC; /* Light gray user text color */
         }
         #left-panel {
             flex: 1;
-            background-image: url('beautiful_background.jpg'); /* добавление красивого фона */
-            background-size: cover;
-            background-position: center;
+            background-color: #1a1a1a; /* Dark gray panel background */
             padding: 20px;
             text-align: center;
             display: flex;
@@ -80,23 +78,23 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background-color: #8A2BE2; /* фиолетовый цвет кнопки */
+            background-color: #8A2BE2; /* Purple profile icon background */
             color: #FFFFFF;
             display: flex;
             justify-content: center;
             align-items: center;
             margin-bottom: 10px;
-            overflow: hidden; /* обрезаем изображение по краям круга */
+            overflow: hidden;
         }
         .profile-icon img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* подгоняем изображение под форму круга */
+            object-fit: cover;
         }
         .small-button {
             display: inline-block;
             padding: 5px 10px;
-            background-color: #8A2BE2; /* фиолетовый цвет кнопки */
+            background-color: #8A2BE2; /* Purple button background */
             color: #FFFFFF;
             text-decoration: none;
             border-radius: 5px;
@@ -107,9 +105,9 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            margin-top: 50px; /* Поднимает блок над нижним краем страницы на 50px */
-            width: 500px; /* Ширина блока 90% */
-            max-width: 900px; /* Максимальная ширина блока */
+            margin-top: 50px;
+            width: 500px;
+            max-width: 900px;
             padding: 45px;
             text-align: center;
         }
@@ -123,7 +121,7 @@
         }
         input[type="submit"] {
             padding: 10px 20px;
-            background-color: #8A2BE2; /* фиолетовый цвет кнопки */
+            background-color: #8A2BE2;
             color: #FFFFFF;
             border: none;
             border-radius: 5px;
@@ -142,7 +140,7 @@
             position: absolute;
             width: 1px;
             height: 100%;
-            background-color: #8A2BE2; /* фиолетовый цвет полоски */
+            background-color: #8A2BE2;
         }
 
         #separator1 {
@@ -153,11 +151,25 @@
             left: 75.66%;
         }
 
+        .post-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        .logout-icon {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 9999;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
     <div id="left-panel">
-        <h2>Добро пожаловать!</h2>
+        <h2>VK.BEBRA.UA</h2>
         <div class="profile-icon">
             <img src="https://s.isanook.com/ga/0/ud/218/1093497/genshin-impact-(1).jpg?ip/crop/w670h402/q80/jpg" alt="Аватар">
         </div>
@@ -177,14 +189,15 @@
         <div id="posts-container">
             {{#each posts}}
             <div class="post">
+                <div class="post-user">
+                    <img class="post-avatar" src="https://steamuserimages-a.akamaihd.net/ugc/1664610068472386993/AEFFCA6FA72E4F5FB2C80A78BE368EA641912EAC/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="User Avatar">
+                    <p>{{name}}</p>
+                </div>
                 <div class="post-content">
                     <p>{{content}}</p>
                 </div>
                 <div class="post-date">
                     <p>{{date}}</p>
-                </div>
-                <div class="post-user">
-                    <p>{{username}}</p>
                 </div>
             </div>
             {{/each}}
@@ -200,5 +213,9 @@
 
     <div id="separator1" class="separator"></div>
     <div id="separator2" class="separator"></div>
+
+    <a href="/account/logout" class="logout-icon">
+        <img src="https://toppng.com/uploads/preview/logout-11551056293ans77of4wy.png" alt="Logout" style="width: 20px; height: 20px;">
+    </a>
 </body>
 </html>

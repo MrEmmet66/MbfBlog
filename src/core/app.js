@@ -58,6 +58,7 @@ app.get("/feed", function (request, response) {
         console.error(err);
         response.status(500).send("Internal Server Error");
       } else {
+        console.log(rows)
         response.render(global.date + "/feed.hbs", { posts: rows });
       }
     });
