@@ -12,7 +12,6 @@ exports.register_form = function(request, response) {
 
     if(request.session && request.session.user) {
       console.log("User is logged in");
-      response.send("у тя есть куки иди нахуй")
     } else {
       console.log("User is not logged in");
     }
@@ -60,7 +59,7 @@ exports.register_get_form = function(request, response) {
   } else {
       console.log("User is already registered with session");
       const viewPath = global.date;
-      response.sendFile(viewPath + "/already_registered.html");
+      response.redirect("/feed")
   }
 };
 

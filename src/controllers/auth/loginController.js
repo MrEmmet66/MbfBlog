@@ -50,6 +50,7 @@ exports.loginForm = function (request, response) {
 }
 
 exports.logout = function (request, response) {
+    request.session.user = {}
     response.clearCookie('MbfBlogUser')
     response.redirect("/")
 }

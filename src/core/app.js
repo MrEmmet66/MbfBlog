@@ -50,9 +50,7 @@ app.get("/", function(request, response) {
 })
 
 app.get("/feed", function (request, response) {
-  console.log(request.session.user);
-  console.log(request.cookies);
-  if (request.session.user || request.cookies["MbfBlogUser"]) {
+  if (request.cookies["MbfBlogUser"]) {
     db.all("SELECT * FROM posts", function (err, rows) {
       if (err) {
         console.error(err);
