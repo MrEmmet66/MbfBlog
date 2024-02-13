@@ -1,18 +1,14 @@
 const express = require("express")
+const session = require("../core/node_modules/express-session");
+const cookieParser = require("cookie-parser")
 
 const registerController = require("../controllers/regController.js")
 const profileViewController = require("../controllers/profileController.js")
 const loginController = require("../controllers/auth/LoginController.js")
 
-const cookieParser = require("cookie-parser")
 
 const app = express()
-
-const session = require("../core/node_modules/express-session");
-
 const db = require("./db.js");
-
-app.use(cookieParser("ilovemorgenshtern"))
 
 db.serialize(() => {
     db.run(
@@ -20,7 +16,14 @@ db.serialize(() => {
     )
 })
 
+app.use(cookieParser("ilovemorgenshtern"))
 
+app.use(session({
+  secret: 'oleg_bebra',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 } // set secure to true if using HTTPS
+}));
 
 app.set("view engine", "hbs")
 app.use(express.urlencoded({extended: false}))

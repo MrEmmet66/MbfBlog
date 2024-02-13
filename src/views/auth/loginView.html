@@ -2,17 +2,69 @@
 <html>
 <head>
     <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://i.imgur.com/OYS3sh3.jpg') center/cover;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            color: white;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 220px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        input[type="submit"] {
+            background-color: #0077B5;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #005A8A;
+        }
+    </style>
 </head>
 <body>
-    <h1>Login</h1>
-    <form action="/account/login" method="POST">
-        <label for="username">E-Mail:</label>
-        <input autocomplete="off" type="text" id="email" name="email" required><br><br>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-        
-        <input type="submit" value="Login">
-    </form>
+    <div class="container">
+        <h1>Login</h1>
+        <form action="/account/login" method="POST">
+            <label for="email">E-Mail:</label>
+            <input autocomplete="off" type="text" id="email" name="email" required><br>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+            
+            <input type="submit" value="Login">
+        </form>
+    </div>
 </body>
 </html>

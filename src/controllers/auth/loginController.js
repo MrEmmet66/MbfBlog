@@ -21,7 +21,8 @@ exports.loginPost = function (request, response) {
             } 
             else {
                 if(!row) {
-                    return response.status(404).send('User not found')
+                    const viewPath = global.date;
+                    return response.status(404).sendFile(viewPath + "/user_not_found.html");
                 }
                 if(password != row.pwd) {
                     return response.status(401).send('Invalid password')

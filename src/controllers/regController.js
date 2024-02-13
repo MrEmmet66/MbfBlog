@@ -3,20 +3,22 @@ const db = require("../core/db")
 const pathToView = require("../views/views_path")
 
 exports.register_form = function(request, response) {
+   
+    if(request.cookies['MbfBlogUser']) {
+        console.log("Log with cookie")
+        request.session.user = request.cookies["MbfBlogUser"]
+        console.log("Session set from cookie:", request.session.user)
+      }
 
-  if(request.cookies['MbfBlogUser']) {
-    console.log("Log with cookie")
-  }
-
-  console.log(request.session)
-  if(request.session && request.session.user) {
+    if(request.session && request.session.user) {
       console.log("User is logged in");
-  } else {
+      response.send("у тя есть куки иди нахуй")
+    } else {
       console.log("User is not logged in");
-  }
+    }
 
-  const viewPath = global.date;
-  response.sendFile(viewPath + "/regPage.html");
+    const viewPath = global.date;
+    response.sendFile(viewPath + "/regPage.html");
 }
 
 exports.register_get_form = function(request, response) {
@@ -25,7 +27,7 @@ exports.register_get_form = function(request, response) {
   const email = request.body.email;
   const password = request.body.password;
 
-  if (!request.session.user) {
+  if (!session.user) {
       db.run(
           "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
           [username, email, password],
@@ -43,9 +45,7 @@ exports.register_get_form = function(request, response) {
 
                   if (session.user) {
                       console.log("Session successfully set for user:", session.user.username);
-
                       response.cookie("MbfBlogUser", request.session.user)
-
                   } else {
                       console.log("Error setting session for user");
                   }
