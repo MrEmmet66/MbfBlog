@@ -94,6 +94,10 @@ app.get("/goto_profile", function(request, response) {
   response.redirect("/users/" + request.cookies["MbfBlogUser"].name)
 })
 
+app.get("/settings", function(request, response) {
+  response.sendFile(global.date + "/settings.html")
+})
+
 
 app.use("/account", registerRouter)
 app.use("/account", loginRouter)
