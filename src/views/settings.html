@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings</title>
+    <!-- Dark theme with purple elements -->
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #292929;
+        }
+        .setting {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .setting label {
+            flex: 1;
+        }
+        .setting .toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 20px;
+        }
+        .setting .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 16px; /* Decreased height of the slider */
+            background-color: #800080; /* Purple color */
+            transition: .4s;
+            border-radius: 20px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            width: 24px;
+            height: 24px;
+            top: -6px; /* Adjust this value to center the circle indicator vertically */
+            left: 0;
+            background-color: #fff;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #800080; /* Purple color */
+        }
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-top: 10px;
+            object-fit: cover;
+            border: 2px solid #800080; /* Purple color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Profile Settings</h1>
+        <div class="setting">
+            <label for="toggle1">Receive Notifications</label>
+            <label class="toggle">
+                <input type="checkbox" id="toggle1">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="setting">
+            <label for="toggle2">Dark Mode</label>
+            <label class="toggle">
+                <input type="checkbox" id="toggle2" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="setting">
+            <label for="toggle2">Notification</label>
+            <label class="toggle">
+                <input type="checkbox" id="toggle2" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="setting">
+            <label for="toggle2">Save cookie</label>
+            <label class="toggle">
+                <input type="checkbox" id="toggle2" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="setting">
+            <label for="avatar">Change Avatar</label>
+            <input type="file" id="avatar">
+            <img src="https://via.placeholder.com/100" alt="Current Avatar" class="avatar">
+        </div>
+    </div>
+</body>
+</html>
