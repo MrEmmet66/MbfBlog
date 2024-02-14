@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser")
 
 const registerController = require("../controllers/regController.js")
 const profileViewController = require("../controllers/profileController.js")
-const loginController = require("../controllers/auth/LoginController.js")
+const loginController = require("../controllers/auth/loginController.js")
 
 
 const app = express()
@@ -17,6 +17,10 @@ db.serialize(() => {
 
     db.run(
       "CREATE TABLE IF NOT EXISTS posts (name TEXT, date TEXT, content TEXT)"
+    )
+
+    db.run(
+      "CREATE TABLE IF NOT EXISTS user_settings (email TEXT, avatar_link TEXT, notify_new_follower TEXT)"
     )
 })
 
